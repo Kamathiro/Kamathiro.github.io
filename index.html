@@ -1,428 +1,562 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Stephen Kamathiro | ICT Officer, Cybersecurity, AI</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg:#f6f8fb;--card:#fff;--line:#e1e7f0;--text:#0f1a2b;--muted:#5a6b85;
-  --acc:#0b9a8f;--acc2:#7a5cf0;--soft:rgba(11,154,143,.1);
-  --shadow:0 8px 30px rgba(15,26,43,.08);--nav:rgba(246,248,251,.8);
-}
-@media(prefers-color-scheme:dark){
-  :root{--bg:#0b1220;--card:#131e33;--line:#24344f;--text:#eaf1fb;--muted:#9aabc5;
-    --acc:#4ecdc4;--acc2:#a78bfa;--soft:rgba(78,205,196,.12);
-    --shadow:0 8px 30px rgba(0,0,0,.35);--nav:rgba(11,18,32,.8)}
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:80px}
-body{background:var(--bg);color:var(--text);
-  font:16px/1.7 Inter,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
-  -webkit-font-smoothing:antialiased;overflow-x:hidden;
-  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-a{color:var(--acc);text-decoration:none}
-.glow{position:fixed;inset:0;z-index:-1;pointer-events:none;
-  background:
-    radial-gradient(600px 400px at 15% 0,var(--soft),transparent),
-    radial-gradient(500px 400px at 90% 30%,rgba(122,92,240,.1),transparent)}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-nav{position:sticky;top:0;z-index:50;background:var(--nav);
-  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--line)}
-.nav{max-width:1080px;margin:auto;padding:12px 22px;display:flex;
-  justify-content:space-between;align-items:center;gap:12px}
-.brand{font-weight:800;letter-spacing:-.3px}
-.brand b{color:var(--acc)}
-.links{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
-.links a{color:var(--muted);font-size:13.5px;font-weight:600;padding:7px 12px;
-  border-radius:8px;white-space:nowrap;transition:.2s;cursor:pointer}
-.links a:hover,.links a.on{color:var(--acc);background:var(--soft)}
+  <title>Stephen Wanjohi Kamathiro | AI & Cybersecurity</title>
 
-.wrap{max-width:1080px;margin:auto;padding:0 22px}
+  <meta name="description" content="Professional portfolio of Stephen Wanjohi Kamathiro, an ICT professional focused on artificial intelligence, cybersecurity, network security and systems administration.">
 
-.hero{padding:64px 0 36px;display:grid;grid-template-columns:auto 1fr;
-  gap:48px;align-items:center}
-.ring{width:176px;height:176px;border-radius:50%;padding:5px;
-  background:conic-gradient(from 0deg,var(--acc),var(--acc2),var(--acc));
-  animation:spin 10s linear infinite}
-.ring img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block;background:var(--card)}
-.ring .init{width:100%;height:100%;border-radius:50%;background:var(--card);
-  display:grid;place-items:center;font:800 54px/1 Inter;
-  letter-spacing:-2px;color:var(--acc)}
-@keyframes spin{to{transform:rotate(360deg)}}
+  <meta name="author" content="Stephen Wanjohi Kamathiro">
+  <meta name="theme-color" content="#0b1220">
 
-.eyebrow{font:700 12px "JetBrains Mono",monospace;letter-spacing:2px;
-  text-transform:uppercase;color:var(--acc);margin-bottom:12px}
-h1{font-size:clamp(36px,6vw,58px);line-height:1.05;letter-spacing:-2px;
-  font-weight:800;margin-bottom:14px}
-h1 span{background:linear-gradient(90deg,var(--acc),var(--acc2));
-  -webkit-background-clip:text;background-clip:text;
-  -webkit-text-fill-color:transparent}
-.bio{color:var(--muted);font-size:18px;max-width:580px;margin-bottom:26px}
-.btns{display:flex;flex-wrap:wrap;gap:10px}
-.btn{padding:11px 20px;border-radius:10px;font-weight:600;font-size:14px;
-  border:1px solid var(--line);color:var(--text);background:var(--card);transition:.2s}
-.btn:hover{transform:translateY(-2px);border-color:var(--acc);color:var(--acc)}
-.btn.p{background:linear-gradient(135deg,var(--acc),var(--acc2));color:#fff;
-  border:0;box-shadow:0 8px 22px rgba(122,92,240,.25)}
-.btn.p:hover{color:#fff}
-
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:32px}
-.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;
-  padding:20px;box-shadow:var(--shadow)}
-.stat b{display:block;font:800 30px/1.1 Inter;letter-spacing:-1px;color:var(--acc)}
-.stat span{color:var(--muted);font-size:13px}
-
-.panel{display:none;padding:28px 0 64px}
-.panel.on{display:block;animation:pi .4s ease}
-@keyframes pi{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-
-.lab{font:700 12px "JetBrains Mono",monospace;letter-spacing:2px;
-  text-transform:uppercase;color:var(--acc);margin-bottom:8px}
-h2{font-size:clamp(26px,4vw,34px);letter-spacing:-1px;margin-bottom:28px;font-weight:800}
-.lead{color:var(--muted);font-size:17.5px;max-width:800px}
-
-.tl{position:relative;display:grid;gap:18px;padding-left:28px}
-.tl::before{content:"";position:absolute;left:5px;top:8px;bottom:8px;width:2px;
-  background:linear-gradient(var(--acc),var(--acc2));opacity:.4}
-.job{position:relative;background:var(--card);border:1px solid var(--line);
-  border-radius:14px;padding:24px 28px;box-shadow:var(--shadow);transition:.25s}
-.job::before{content:"";position:absolute;left:-30px;top:30px;width:12px;height:12px;
-  border-radius:50%;background:var(--acc);box-shadow:0 0 0 4px var(--bg)}
-.job:hover{transform:translateX(4px);border-color:var(--acc)}
-.jh{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
-.job h3{font-size:18px}
-.per{font:600 12px "JetBrains Mono",monospace;color:var(--acc);
-  background:var(--soft);padding:4px 12px;border-radius:99px;align-self:center}
-.co{color:var(--muted);font-weight:500;margin:2px 0 12px}
-.job ul{padding-left:18px}
-.job li{color:var(--muted);font-size:14.5px;margin-bottom:6px}
-.job li::marker{color:var(--acc)}
-.job details summary{cursor:pointer;color:var(--acc);font-size:13.5px;
-  font-weight:600;margin-top:6px}
-
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
-.box{background:var(--card);border:1px solid var(--line);border-radius:14px;
-  padding:22px;box-shadow:var(--shadow);transition:.25s}
-.box:hover{transform:translateY(-4px);border-color:var(--acc)}
-.box h3{font-size:12.5px;text-transform:uppercase;letter-spacing:1.2px;
-  color:var(--acc);margin-bottom:14px}
-.tags{display:flex;flex-wrap:wrap;gap:7px}
-.tag{font-size:12.5px;font-weight:500;color:var(--muted);border:1px solid var(--line);
-  padding:4px 10px;border-radius:7px}
-
-.pc{display:flex;flex-direction:column}
-.pc h3{font:700 18px Inter;text-transform:none;letter-spacing:0;
-  color:var(--text);margin-bottom:8px}
-.pc p{color:var(--muted);font-size:14.5px;flex:1;margin-bottom:14px}
-.pc .tags{margin-bottom:14px}
-.pc .tag{color:var(--acc);background:var(--soft);border:0;
-  text-transform:uppercase;font-size:11px;font-weight:700}
-.meta{display:flex;gap:14px;color:var(--muted);font-size:12.5px;margin-bottom:12px}
-.pc a+a{margin-top:6px}
-
-.ci strong{display:block;font-size:15px}
-.ci span{display:block;color:var(--muted);font-size:13.5px}
-.ci em{font:600 12px "JetBrains Mono",monospace;color:var(--acc);font-style:normal}
-
-.cta{text-align:center;
-  background:linear-gradient(135deg,var(--soft),rgba(122,92,240,.1));
-  border:1px solid var(--line);border-radius:20px;padding:48px 28px}
-.cta p{color:var(--muted);max-width:560px;margin:0 auto 24px}
-.cta .btns{justify-content:center}
-
-footer{text-align:center;color:var(--muted);font-size:13.5px;
-  padding:30px 22px;border-top:1px solid var(--line)}
-
-@media(prefers-reduced-motion:reduce){
-  .ring{animation:none}
-}
-@media(max-width:760px){
-  .hero{grid-template-columns:1fr;text-align:center;justify-items:center;
-    padding-top:48px;gap:28px}
-  .ring{width:132px;height:132px}
-  .ring .init{font-size:40px}
-  .btns{justify-content:center}
-  .stats{grid-template-columns:repeat(2,1fr)}
-  .brand{display:none}
-  .nav{padding:8px 12px}
-}
-</style>
-</head>
-<body>
-<div class="glow"></div>
-
-<nav>
-  <div class="nav">
-    <div class="brand">stephen<b>.</b>k</div>
-    <div class="links" id="links">
-      <a data-tab="about">About</a>
-      <a data-tab="experience">Experience</a>
-      <a data-tab="skills">Skills</a>
-      <a data-tab="projects">Projects</a>
-      <a data-tab="education">Education</a>
-      <a data-tab="contact">Contact</a>
-    </div>
-  </div>
-</nav>
-
-<div class="wrap">
-
-<header class="hero">
-  <div class="ring" id="ring">
-    <img src="profile.jpg" alt="Stephen Kamathiro"
-      onerror="if(!this.dataset.t){this.dataset.t=1;this.src='https://github.com/Kamathiro.png';}else{var d=document.createElement('div');d.className='init';d.textContent='SK';this.parentNode.replaceChild(d,this);}">
-  </div>
-  <div>
-    <div class="eyebrow">ICT &middot; Cybersecurity &middot; AI</div>
-    <h1>Stephen <span>Kamathiro</span></h1>
-    <p class="bio">I run secure, reliable IT infrastructure for 2,000+ users, and I research how machine learning can detect network attacks.</p>
-    <div class="btns">
-      <a class="btn p" href="mailto:wanjohisteve85@gmail.com">Email me</a>
-      <a class="btn" href="cv.pdf" download>Download CV</a>
-      <a class="btn" href="https://www.linkedin.com/in/stephen-kamathiro-b3b7b71b9/" target="_blank" rel="noopener">LinkedIn</a>
-      <a class="btn" href="https://github.com/Kamathiro" target="_blank" rel="noopener">GitHub</a>
-    </div>
-  </div>
-</header>
-
-<section class="panel" id="about">
-  <div class="lab">About</div>
-  <h2>Professional summary</h2>
-  <div class="stats">
-    <div class="stat"><b>6+</b><span>Years in ICT</span></div>
-    <div class="stat"><b>2,000+</b><span>Users supported</span></div>
-    <div class="stat"><b>99.5%</b><span>Systems uptime</span></div>
-    <div class="stat"><b>300+</b><span>Staff on secure VPN</span></div>
-  </div>
-  <p class="lead">Results-driven ICT Officer with 6+ years of progressive experience in IT infrastructure management, systems administration and digital transformation. Proven expertise in designing and implementing secure ICT strategies, optimizing system performance and leading technical teams. Skilled at translating complex technical requirements into operational excellence while maintaining regulatory compliance and high user satisfaction.</p>
-</section>
-
-<section class="panel" id="experience">
-  <div class="lab">Career</div>
-  <h2>Professional experience</h2>
-  <div class="tl">
-
-    <div class="job">
-      <div class="jh"><h3>Assistant System Administrator</h3><span class="per">May 2025 &ndash; Present</span></div>
-      <p class="co">Kiriri Women's University of Science and Technology</p>
-      <ul>
-        <li>Lead ICT strategy implementation and governance aligned with institutional objectives, overseeing infrastructure roadmap and policy development.</li>
-        <li>Manage large-scale IT projects including ERP deployment, cloud migration and cybersecurity initiatives, ensuring on-time delivery and stakeholder alignment.</li>
-        <li>Monitor servers, updates and backups across 50+ systems, achieving 99.5% uptime and zero data loss incidents.</li>
-        <li>Provide first-line support and account management for 2,000+ users, maintaining a 95% ticket resolution rate.</li>
-      </ul>
-      <details><summary>More</summary><ul>
-        <li>Enforce ICT policies and compliance in line with regulatory standards, conducting audits and remediation across all systems.</li>
-        <li>Coordinate with cross-functional departments, reducing inter-departmental resolution time by 30%.</li>
-        <li>Configure and manage network devices, IP addressing and DNS/DHCP for 2,000+ endpoints.</li>
-        <li>Maintain and upgrade hardware/software and enforce antivirus/firewall compliance, achieving 100% security policy adherence.</li>
-        <li>Document system changes and develop user guides, reducing support inquiries by 20%.</li>
-      </ul></details>
-    </div>
-
-    <div class="job">
-      <div class="jh"><h3>ICT Officer</h3><span class="per">Oct 2021 &ndash; May 2025</span></div>
-      <p class="co">Kiriri Women's University of Science and Technology</p>
-      <ul>
-        <li>Deployed an ICT strategy and governance framework, improving system uptime to 99.2% across university operations.</li>
-        <li>Ran a quarterly security audit program that remediated 15+ critical vulnerabilities and achieved 100% software licensing compliance.</li>
-        <li>Designed a secure VPN remote-access solution for 300+ staff, with zero unauthorized access incidents.</li>
-        <li>Led ERP implementation for student data management, moving data integrity audits from manual to automated with 99.8% accuracy.</li>
-        <li>Mentored 5 support staff, cutting average ticket resolution time from 8 hours to 2 hours.</li>
-      </ul>
-      <details><summary>More</summary><ul>
-        <li>Managed ICT infrastructure for 2,000+ users, reducing downtime by 40% year-over-year.</li>
-        <li>Orchestrated upgrades and backups for 50+ systems with zero data loss across 3+ years.</li>
-        <li>Trained 500+ end users, achieving 95% adoption for new systems.</li>
-        <li>Maintained antivirus, print and email services at 99.5% availability with zero major breaches.</li>
-      </ul></details>
-    </div>
-
-    <div class="job">
-      <div class="jh"><h3>Assistant ICT Support Officer</h3><span class="per">Jan 2021 &ndash; Jun 2021</span></div>
-      <p class="co">Nyandarua County Government</p>
-      <ul>
-        <li>Maintained 20+ servers, network equipment and 100+ peripherals at 98% uptime.</li>
-        <li>Implemented firewalls, antimalware and access controls, reducing security incidents by 50%.</li>
-        <li>Built disaster recovery procedures with monthly drills, zero data loss and a 4-hour RTO for critical systems.</li>
-        <li>Supported 150+ users with a 92% first-contact resolution rate and trained them on security best practice.</li>
-        <li>Negotiated with 5+ vendors, cutting equipment and service costs by 20%.</li>
-      </ul>
-    </div>
-
-    <div class="job">
-      <div class="jh"><h3>ICT Intern</h3><span class="per">Jan 2017 &ndash; Aug 2017</span></div>
-      <p class="co">Baringo County Government</p>
-      <ul>
-        <li>Gathered requirements for 3 software projects and documented 20+ defects, reducing post-deployment issues by 35%.</li>
-        <li>Troubleshot 10+ applications and resolved network issues for 50+ users at a 95% first-contact rate.</li>
-        <li>Managed backup and recovery for 5 mission-critical servers with 100% data integrity.</li>
-      </ul>
-    </div>
-
-  </div>
-</section>
-
-<section class="panel" id="skills">
-  <div class="lab">Capabilities</div>
-  <h2>Technical skills</h2>
-  <div class="grid">
-    <div class="box"><h3>Infrastructure</h3><div class="tags">
-      <span class="tag">ICT Infrastructure</span><span class="tag">Systems Administration</span>
-      <span class="tag">Server Management</span><span class="tag">Network Configuration</span>
-      <span class="tag">DNS / DHCP</span><span class="tag">VPN</span><span class="tag">Hardware</span>
-    </div></div>
-    <div class="box"><h3>Cybersecurity</h3><div class="tags">
-      <span class="tag">Security Audit</span><span class="tag">Compliance</span>
-      <span class="tag">Firewall</span><span class="tag">Antivirus</span>
-      <span class="tag">Access Control</span><span class="tag">Incident Management</span>
-      <span class="tag">GNS3</span>
-    </div></div>
-    <div class="box"><h3>Operations</h3><div class="tags">
-      <span class="tag">Disaster Recovery</span><span class="tag">Business Continuity</span>
-      <span class="tag">Project Management</span><span class="tag">Vendor Management</span>
-      <span class="tag">Licensing</span><span class="tag">Documentation</span>
-    </div></div>
-    <div class="box"><h3>Support</h3><div class="tags">
-      <span class="tag">Help Desk</span><span class="tag">User Training</span>
-      <span class="tag">Troubleshooting</span><span class="tag">ERP Systems</span>
-      <span class="tag">Data Integrity</span><span class="tag">Backup and Replication</span>
-    </div></div>
-  </div>
-</section>
-
-<section class="panel" id="projects">
-  <div class="lab">Portfolio</div>
-  <h2>Featured projects</h2>
-  <div class="grid" id="repos"><p class="lead">Loading projects&hellip;</p></div>
-</section>
-
-<section class="panel" id="education">
-  <div class="lab">Credentials</div>
-  <h2>Education and certifications</h2>
-  <div class="grid">
-    <div class="box ci"><strong>MSc, Artificial Intelligence</strong><span>Open University of Kenya</span><em>Ongoing</em></div>
-    <div class="box ci"><strong>MSc, Cyber Security</strong><span>Mount Kenya University</span><em>Jan 2024 &ndash; Ongoing</em></div>
-    <div class="box ci"><strong>BSc, Information Technology</strong><span>Mount Kenya University</span><em>May 2018 &ndash; Jul 2022</em></div>
-    <div class="box ci"><strong>Diploma, Information Technology</strong><span>Kisii University</span><em>May 2015 &ndash; Dec 2016</em></div>
-    <div class="box ci"><strong>Network Fundamentals Using GNS3</strong><span>Cybrary</span><em>2018 &ndash; 2019</em></div>
-    <div class="box ci"><strong>Network Security</strong><span>Cybrary</span><em>2018 &ndash; 2019</em></div>
-    <div class="box ci"><strong>Computer Repair and Maintenance</strong><span>Elias ICT Centre, Baringo</span></div>
-  </div>
-</section>
-
-<section class="panel" id="contact">
-  <div class="cta">
-    <div class="lab">Get in touch</div>
-    <h2 style="margin-bottom:12px">Let's work together</h2>
-    <p>Open to opportunities in ICT infrastructure, cybersecurity, systems administration and AI. Email or LinkedIn is fastest.</p>
-    <div class="btns">
-      <a class="btn p" href="mailto:wanjohisteve85@gmail.com">Email me</a>
-      <a class="btn" href="cv.pdf" download>Download CV</a>
-      <a class="btn" href="https://www.linkedin.com/in/stephen-kamathiro-b3b7b71b9/" target="_blank" rel="noopener">LinkedIn</a>
-      <a class="btn" href="https://github.com/Kamathiro" target="_blank" rel="noopener">GitHub</a>
-    </div>
-  </div>
-</section>
-
-</div>
-
-<footer>&copy; Stephen Kamathiro &middot; Kenya &middot; +254 713 474 115</footer>
-
-<script>
-(function(){
-  var links=document.querySelectorAll('#links a');
-  var panels=document.querySelectorAll('.panel');
-  function show(id,push){
-    if(!document.getElementById(id))id='about';
-    panels.forEach(function(p){p.classList.toggle('on',p.id===id)});
-    links.forEach(function(a){a.classList.toggle('on',a.dataset.tab===id)});
-    if(push){try{history.replaceState(null,'','#'+id)}catch(e){}}
-    var hero=document.querySelector('.hero');
-    hero.style.display=(id==='about')?'':'none';
-    window.scrollTo({top:0,behavior:'smooth'});
-  }
-  links.forEach(function(a){
-    a.addEventListener('click',function(e){
-      e.preventDefault();show(a.dataset.tab,true);
-    });
-  });
-  show((location.hash||'#about').slice(1),false);
-})();
-</script>
-
-<script>
-/* Auto-load projects from GitHub */
-(function(){
-  var USER='Kamathiro';
-  var MAX=9;
-  var EXCLUDE=['Kamathiro','Kamathiro.github.io'];
-  var box=document.getElementById('repos'),KEY='gh_repos_v2';
-
-  function pretty(n){return n.replace(/[-_]+/g,' ').replace(/\b\w/g,function(c){return c.toUpperCase()})}
-  function ago(d){
-    var n=Math.floor((Date.now()-new Date(d))/864e5);
-    if(n<1)return 'today';
-    if(n<31)return n+'d ago';
-    if(n<365)return Math.floor(n/30)+'mo ago';
-    return Math.floor(n/365)+'y ago';
-  }
-  function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
-  function link(text,url){var a=el('a',null,text);a.href=url;a.target='_blank';a.rel='noopener';return a}
-
-  function render(list){
-    list=list.filter(function(r){
-      return !r.fork&&!r.archived&&EXCLUDE.indexOf(r.name)<0;
-    }).sort(function(a,b){
-      return new Date(b.pushed_at)-new Date(a.pushed_at);
-    }).slice(0,MAX);
-    box.textContent='';
-    if(!list.length){
-      box.appendChild(el('p','lead','No public projects to show yet.'));
-      return;
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
-    list.forEach(function(r){
-      var c=el('div','box pc'),tags=el('div','tags'),m=el('div','meta');
-      c.appendChild(el('h3',null,pretty(r.name)));
-      c.appendChild(el('p',null,r.description||'No description yet.'));
-      if(r.language)tags.appendChild(el('span','tag',r.language));
-      (r.topics||[]).slice(0,3).forEach(function(t){tags.appendChild(el('span','tag',t))});
-      c.appendChild(tags);
-      m.appendChild(el('span',null,'\u2605 '+r.stargazers_count));
-      m.appendChild(el('span',null,'Updated '+ago(r.pushed_at)));
-      c.appendChild(m);
-      c.appendChild(link('View on GitHub \u2192',r.html_url));
-      if(r.homepage&&/^https?:\/\//.test(r.homepage)){
-        c.appendChild(link('Live demo \u2192',r.homepage));
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0b1220;
+      color: #e5e7eb;
+      line-height: 1.7;
+    }
+
+    a {
+      color: #7dd3fc;
+    }
+
+    /* Header and static profile photo */
+    .hero {
+      text-align: center;
+      padding: 65px 20px 55px;
+      background: linear-gradient(135deg, #14243d, #0f172a);
+      border-bottom: 1px solid #263752;
+    }
+
+    .profile-photo {
+      width: 155px;
+      height: 155px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 50%;
+      border: 4px solid #7dd3fc;
+      display: block;
+      margin: 0 auto 22px;
+      background: #172338;
+      /* Static photo: no rotation or animation */
+    }
+
+    .hero h1 {
+      font-size: clamp(28px, 5vw, 42px);
+      line-height: 1.25;
+      margin-bottom: 12px;
+    }
+
+    .subtitle {
+      color: #7dd3fc;
+      font-size: 19px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .intro {
+      max-width: 680px;
+      margin: 0 auto;
+      color: #cbd5e1;
+    }
+
+    .hero-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 25px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      border: 1px solid #7dd3fc;
+      border-radius: 7px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .button.primary {
+      background: #7dd3fc;
+      color: #0b1220;
+    }
+
+    .button:hover {
+      background: #bae6fd;
+      color: #0b1220;
+    }
+
+    /* Navigation */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px 24px;
+      padding: 15px;
+      background: #0f1a2e;
+      border-bottom: 1px solid #263752;
+    }
+
+    nav a {
+      color: #e5e7eb;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: #7dd3fc;
+    }
+
+    /* Main content */
+    main {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px 24px;
+    }
+
+    section {
+      margin: 55px 0;
+    }
+
+    section h2 {
+      font-size: 27px;
+      color: #7dd3fc;
+      margin-bottom: 18px;
+    }
+
+    .section-intro {
+      color: #cbd5e1;
+      margin-bottom: 22px;
+    }
+
+    /* About */
+    .about-box {
+      background: #111d30;
+      border: 1px solid #263752;
+      border-radius: 12px;
+      padding: 25px;
+    }
+
+    .about-box p {
+      color: #cbd5e1;
+    }
+
+    /* Skills */
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .skill {
+      background: #172338;
+      border: 1px solid #2b405e;
+      padding: 9px 15px;
+      border-radius: 7px;
+      color: #e5e7eb;
+      font-size: 14px;
+    }
+
+    /* Project cards */
+    .projects {
+      display: grid;
+      grid-template-columns:
+        repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+      gap: 20px;
+    }
+
+    .project {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      background: #142036;
+      border: 1px solid #263752;
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .project h3 {
+      color: #f1f5f9;
+      font-size: 19px;
+      margin-bottom: 12px;
+    }
+
+    .project p {
+      color: #cbd5e1;
+      margin-bottom: 18px;
+    }
+
+    .project-link {
+      margin-top: auto;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .project-link:hover {
+      text-decoration: underline;
+    }
+
+    .tag {
+      display: inline-block;
+      color: #bae6fd;
+      background: #1e3350;
+      padding: 4px 9px;
+      border-radius: 5px;
+      font-size: 12px;
+      margin: 0 5px 10px 0;
+    }
+
+    /* Research */
+    .research-box {
+      background: #111d30;
+      border-left: 4px solid #7dd3fc;
+      border-radius: 5px;
+      padding: 23px;
+    }
+
+    .research-box h3 {
+      margin-bottom: 10px;
+    }
+
+    .research-box p {
+      color: #cbd5e1;
+    }
+
+    /* Contact */
+    .contact-box {
+      background: #14243d;
+      border: 1px solid #263752;
+      border-radius: 12px;
+      padding: 28px;
+    }
+
+    .contact-box p {
+      margin: 10px 0;
+      overflow-wrap: anywhere;
+    }
+
+    .contact-box a {
+      text-decoration: none;
+    }
+
+    .contact-box a:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 28px 20px;
+      background: #080e19;
+      color: #9ca3af;
+      font-size: 14px;
+      margin-top: 50px;
+    }
+
+    footer a {
+      text-decoration: none;
+    }
+
+    /* Mobile layout */
+    @media (max-width: 600px) {
+      .hero {
+        padding: 45px 18px;
       }
-      box.appendChild(c);
-    });
-  }
 
-  var cached=null;
-  try{cached=JSON.parse(localStorage.getItem(KEY))}catch(e){}
-  if(cached&&Date.now()-cached.t<36e5){render(cached.d);return}
+      .profile-photo {
+        width: 125px;
+        height: 125px;
+      }
 
-  fetch('https://api.github.com/users/'+USER+'/repos?per_page=100&sort=pushed',
-        {headers:{Accept:'application/vnd.github+json'}})
-    .then(function(r){if(!r.ok)throw new Error(r.status);return r.json()})
-    .then(function(d){
-      try{localStorage.setItem(KEY,JSON.stringify({t:Date.now(),d:d}))}catch(e){}
-      render(d);
-    })
-    .catch(function(){
-      if(cached){render(cached.d);return}
-      box.textContent='';
-      var p=el('p','lead','Projects could not load right now. ');
-      p.appendChild(link('See them on GitHub \u2192','https://github.com/'+USER+'?tab=repositories'));
-      box.appendChild(p);
-    });
-})();
-</script>
+      .subtitle {
+        font-size: 16px;
+      }
+
+      nav {
+        gap: 10px 16px;
+      }
+
+      main {
+        padding: 15px 18px;
+      }
+
+      section {
+        margin: 40px 0;
+      }
+
+      section h2 {
+        font-size: 24px;
+      }
+
+      .about-box,
+      .project,
+      .contact-box {
+        padding: 20px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .button {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HERO: Fixed profile photo -->
+  <header class="hero">
+
+    <img
+      src="profile.jpg"
+      alt="Stephen Wanjohi Kamathiro"
+      class="profile-photo"
+      width="155"
+      height="155"
+    >
+
+    <h1>Stephen Wanjohi Kamathiro</h1>
+
+    <p class="subtitle">
+      AI | Cybersecurity | ICT Systems Administration
+    </p>
+
+    <p class="intro">
+      ICT professional exploring practical applications of artificial
+      intelligence, cybersecurity, network security and automation.
+      Focused on building useful technology solutions and expanding
+      practical skills.
+    </p>
+
+    <div class="hero-links">
+      <a
+        class="button primary"
+        href="#projects">
+        Explore My Projects
+      </a>
+
+      <a
+        class="button"
+        href="https://github.com/wanjohisteve"
+        target="_blank"
+        rel="noopener noreferrer">
+        Visit My GitHub
+      </a>
+    </div>
+
+  </header>
+
+  <!-- NAVIGATION -->
+  <nav aria-label="Main navigation">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#research">Research</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <main>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <h2>About Me</h2>
+
+      <div class="about-box">
+        <p>
+          I am an ICT professional with experience in systems
+          administration and a background in cybersecurity.
+          I am pursuing advanced studies in Artificial Intelligence
+          and developing practical skills in Python, machine learning,
+          network analysis and security automation.
+        </p>
+        <br>
+        <p>
+          My interests include applying AI to cybersecurity challenges,
+          improving network threat detection and building tools that
+          help organizations manage technology risks.
+        </p>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <h2>Technical Skills & Interests</h2>
+
+      <p class="section-intro">
+        Technologies and areas I work with or am actively learning.
+      </p>
+
+      <div class="skills">
+        <span class="skill">Python</span>
+        <span class="skill">Artificial Intelligence</span>
+        <span class="skill">Machine Learning</span>
+        <span class="skill">Cybersecurity</span>
+        <span class="skill">Network Security</span>
+        <span class="skill">Linux</span>
+        <span class="skill">Systems Administration</span>
+        <span class="skill">Network Traffic Analysis</span>
+        <span class="skill">Security Automation</span>
+        <span class="skill">Software-Defined Networking</span>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <h2>Featured Projects</h2>
+
+      <p class="section-intro">
+        Explore my practical work and technical development.
+      </p>
+
+      <div class="projects">
+
+        <article class="project">
+          <div>
+            <span class="tag">Cybersecurity</span>
+            <span class="tag">Network Analysis</span>
+          </div>
+
+          <h3>Network Traffic Analyzer</h3>
+
+          <p>
+            A project focused on examining network traffic and
+            exploring suspicious activity through network analysis.
+            Visit the repository for the implementation, documentation
+            and available features.
+          </p>
+
+          <a
+            class="project-link"
+            href="https://github.com/wanjohisteve/network-traffic-analyzer"
+            target="_blank"
+            rel="noopener noreferrer">
+            View Project on GitHub →
+          </a>
+        </article>
+
+        <article class="project">
+          <div>
+            <span class="tag">Artificial Intelligence</span>
+            <span class="tag">Research</span>
+          </div>
+
+          <h3>AI for Cybersecurity</h3>
+
+          <p>
+            Exploring how machine learning can support network threat
+            detection, security analysis and automated responses.
+            This area brings together my interests in AI and
+            cybersecurity.
+          </p>
+
+          <span class="project-link">
+            Research and practical development
+          </span>
+        </article>
+
+        <article class="project">
+          <div>
+            <span class="tag">Automation</span>
+            <span class="tag">Systems Administration</span>
+          </div>
+
+          <h3>ICT Automation</h3>
+
+          <p>
+            Developing practical approaches to routine ICT tasks,
+            system monitoring, log analysis and troubleshooting
+            through scripting and automation.
+          </p>
+
+          <span class="project-link">
+            Skills development
+          </span>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- RESEARCH -->
+    <section id="research">
+      <h2>Research Interests</h2>
+
+      <div class="research-box">
+        <h3>Intelligent Network Security</h3>
+
+        <p>
+          My research interests include machine-learning-based
+          DDoS detection, adaptive security monitoring, explainable
+          AI and automated threat mitigation in software-defined
+          networks. I am also interested in multi-agent AI systems
+          for cybersecurity.
+        </p>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <h2>Contact</h2>
+
+      <div class="contact-box">
+        <p>
+          <strong>Location:</strong> Kenya
+        </p>
+
+        <p>
+          <strong>GitHub:</strong>
+          <a
+            href="https://github.com/wanjohisteve"
+            target="_blank"
+            rel="noopener noreferrer">
+            github.com/wanjohisteve
+          </a>
+        </p>
+
+        <p>
+          For professional enquiries, please connect with me
+          through GitHub.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>
+      © 2026 Stephen Wanjohi Kamathiro.
+      All rights reserved.
+    </p>
+
+    <p>
+      Built with HTML and CSS · Hosted on GitHub Pages
+    </p>
+  </footer>
 
 </body>
 </html>
