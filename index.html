@@ -239,8 +239,8 @@ footer{text-align:center;color:var(--muted);font-size:13.5px;padding:30px 22px;b
 (function(){
   var USER='Kamathiro';
   var MAX=9;                       // how many projects to show
-  var ONLY_TOPIC='';               // e.g. 'portfolio' = show only repos with that topic
-  var EXCLUDE=['kamathiro','kamathiro.github.io','wanjohisteve','wanjohisteve.github.io'];
+  var ONLY_TOPIC='portfolio';               // e.g. 'portfolio' = show only repos with that topic
+  var EXCLUDE=['skl','astro-platform-starter','kamathiro','kamathiro.github.io','wanjohisteve','wanjohisteve.github.io']; // lowercase repo names to hide
 
   var box=document.getElementById('repos'),KEY='gh_repos_v1';
   function pretty(n){return n.replace(/[-_]+/g,' ').replace(/\b\w/g,function(c){return c.toUpperCase()})}
@@ -251,8 +251,8 @@ footer{text-align:center;color:var(--muted);font-size:13.5px;padding:30px 22px;b
     list=list.filter(function(r){
       return !r.fork&&!r.archived&&EXCLUDE.indexOf(r.name.toLowerCase())<0&&(!ONLY_TOPIC||(r.topics||[]).indexOf(ONLY_TOPIC)>-1);
     }).sort(function(a,b){return new Date(b.pushed_at)-new Date(a.pushed_at)}).slice(0,MAX);
+    if(!list.length)return;   // nothing tagged yet: keep the built-in card
     box.textContent='';
-    if(!list.length){box.appendChild(el('p','lead','No public projects to show yet.'));return}
     list.forEach(function(r){
       var c=el('div','box pc'),tags=el('div','tags'),m=el('div','meta');
       c.appendChild(el('h3',null,pretty(r.name)));
