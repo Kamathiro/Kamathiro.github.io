@@ -9,7 +9,6 @@
 <style>
 :root{--bg:#f6f8fb;--card:#fff;--line:#e1e7f0;--text:#0f1a2b;--muted:#5a6b85;--acc:#0b9a8f;--acc2:#7a5cf0;--soft:rgba(11,154,143,.1);--shadow:0 8px 30px rgba(15,26,43,.08);--nav:rgba(246,248,251,.8);
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1220;--card:#131e33;--line:#24344f;--text:#eaf1fb;--muted:#9aabc5;--acc:#4ecdc4;--acc2:#a78bfa;--soft:rgba(78,205,196,.12);--shadow:0 8px 30px rgba(0,0,0,.35);--nav:rgba(11,18,32,.8)}}
 :root[data-theme="dark"]{--bg:#0b1220;--card:#131e33;--line:#24344f;--text:#eaf1fb;--muted:#9aabc5;--acc:#4ecdc4;--acc2:#a78bfa;--soft:rgba(78,205,196,.12);--shadow:0 8px 30px rgba(0,0,0,.35);--nav:rgba(11,18,32,.8)}
 *,*::before,*::after{box-sizing:inherit;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px)}
@@ -23,6 +22,8 @@ nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(-
 .links{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
 .links a{color:var(--muted);font-size:13.5px;font-weight:600;padding:7px 12px;border-radius:8px;white-space:nowrap;transition:.2s}
 .links a:hover,.links a.on{color:var(--acc);background:var(--soft)}
+.tg{border:1px solid var(--line);background:var(--card);color:var(--text);width:36px;height:36px;border-radius:10px;cursor:pointer;font-size:16px;flex:none}
+.tg:hover{border-color:var(--acc);color:var(--acc)}
 .wrap{max-width:1080px;margin:auto;padding:0 22px}
 .hero{padding:64px 0 36px;display:grid;grid-template-columns:auto 1fr;gap:48px;align-items:center}
 .ring{width:176px;height:176px;border-radius:50%;padding:5px;background:conic-gradient(from 0deg,var(--acc),var(--acc2),var(--acc));animation:spin 10s linear infinite}
@@ -88,7 +89,7 @@ footer{text-align:center;color:var(--muted);font-size:13.5px;padding:30px 22px;b
 <body>
 <div class="glow"></div>
 <nav><div class="nav"><div class="brand">stephen<b>.</b>k</div>
-<div class="links" id="links"><a href="#about">About</a><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#education">Education</a><a href="#contact">Contact</a></div></div></nav>
+<div class="links" id="links"><a href="#about">About</a><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#education">Education</a><a href="#contact">Contact</a></div><button class="tg" id="theme" aria-label="Switch light or dark mode" title="Light / dark">&#9680;</button></div></nav>
 
 <div class="wrap">
 <header class="hero">
@@ -96,7 +97,7 @@ footer{text-align:center;color:var(--muted);font-size:13.5px;padding:30px 22px;b
   <div>
     <div class="eyebrow">ICT &middot; Cybersecurity &middot; AI</div>
     <h1>Stephen <span>Kamathiro</span></h1>
-    <p class="bio">I run secure, reliable IT infrastructure for 2,000+ users, and I research how machine learning can detect network attacks.</p>
+    <p class="bio">ICT professional focused on secure systems, dependable infrastructure and AI-driven security.</p>
     <div class="btns">
       <a class="btn p" href="mailto:wanjohisteve85@gmail.com">Email me</a><a class="btn" href="cv.pdf" download>Download CV</a>
       <a class="btn" href="https://www.linkedin.com/in/stephen-kamathiro-b3b7b71b9/" target="_blank" rel="noopener">LinkedIn</a>
@@ -277,6 +278,17 @@ footer{text-align:center;color:var(--muted);font-size:13.5px;padding:30px 22px;b
       if(cached){render(cached.d);return}
       /* keep the static project card already in the page */
     });
+})();
+</script>
+<script>
+(function(){
+  var r=document.documentElement,b=document.getElementById('theme');
+  try{if(localStorage.getItem('theme')==='dark')r.setAttribute('data-theme','dark')}catch(e){}
+  b.addEventListener('click',function(){
+    var d=r.getAttribute('data-theme')==='dark';
+    if(d)r.removeAttribute('data-theme');else r.setAttribute('data-theme','dark');
+    try{localStorage.setItem('theme',d?'light':'dark')}catch(e){}
+  });
 })();
 </script>
 </body>
