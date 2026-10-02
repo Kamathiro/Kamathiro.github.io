@@ -235,49 +235,67 @@ footer{text-align:center;color:var(--muted);font-size:13.5px;padding:30px 22px;b
 })();
 </script>
 <script>
-/* Projects load live from GitHub. Edit the settings below. */
+/* Projects: pinned cards first, then live repos from GitHub. Edit the settings below. */
 (function(){
   var USER='Kamathiro';
   var MAX=9;                       // how many projects to show
-  var ONLY_TOPIC='portfolio';               // e.g. 'portfolio' = show only repos with that topic
-  var EXCLUDE=['skl','astro-platform-starter','kamathiro','kamathiro.github.io','wanjohisteve','wanjohisteve.github.io']; // lowercase repo names to hide
+  var ONLY_TOPIC='portfolio';      // only repos with this GitHub topic are listed
+  var EXCLUDE=['skl','astro-platform-starter','kamathiro','kamathiro.github.io','wanjohisteve','wanjohisteve.github.io'];
+  var PINNED=[
+    {name:'sdn-ddos-detection-ml',title:'DDoS Detection in SDN Using Machine Learning',
+     desc:'Research on adaptive DDoS detection in software-defined networks, combining XGBoost and a Deep Q-Network, with a focus on explainability and realistic datasets.',
+     tags:['SDN','Machine Learning','Cybersecurity'],status:'Research in progress'},
+    {name:'network-traffic-analyzer',title:'Network Traffic Analyzer',
+     desc:'A Python cybersecurity tool for analyzing network traffic and identifying high-volume source IPs.',
+     tags:['Python'],url:'https://github.com/Kamathiro/network-traffic-analyzer'}
+  ];
 
   var box=document.getElementById('repos'),KEY='gh_repos_v1';
   function pretty(n){return n.replace(/[-_]+/g,' ').replace(/\b\w/g,function(c){return c.toUpperCase()})}
   function ago(d){var n=Math.floor((Date.now()-new Date(d))/864e5);if(n<1)return 'today';if(n<31)return n+'d ago';if(n<365)return Math.floor(n/30)+'mo ago';return Math.floor(n/365)+'y ago'}
   function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
   function link(text,url){var a=el('a',null,text);a.href=url;a.target='_blank';a.rel='noopener';return a}
-  function render(list){
-    list=list.filter(function(r){
+  function build(o){
+    var c=el('div','box pc'),tags=el('div','tags');
+    c.appendChild(el('h3',null,o.title));
+    c.appendChild(el('p',null,o.desc||'No description yet.'));
+    (o.tags||[]).forEach(function(t){tags.appendChild(el('span','tag',t))});
+    c.appendChild(tags);
+    if(o.meta){var m=el('div','meta');o.meta.forEach(function(x){m.appendChild(el('span',null,x))});c.appendChild(m)}
+    if(o.url)c.appendChild(link('View on GitHub \u2192',o.url));
+    else if(o.status){var s=el('span',null,o.status);s.style.color='var(--muted)';c.appendChild(s)}
+    if(o.demo)c.appendChild(link('Live demo \u2192',o.demo));
+    return c;
+  }
+  function fromRepo(r,p){
+    var tags=[];
+    if(r.language)tags.push(r.language);
+    (r.topics||[]).filter(function(t){return t!==ONLY_TOPIC}).slice(0,3).forEach(function(t){tags.push(t)});
+    return {title:p?p.title:pretty(r.name),desc:r.description||(p&&p.desc),tags:tags,
+      meta:['\u2605 '+r.stargazers_count,'Updated '+ago(r.pushed_at)],url:r.html_url,
+      demo:(r.homepage&&/^https?:\/\//.test(r.homepage))?r.homepage:''};
+  }
+  function show(list){
+    var repos=(list||[]).filter(function(r){
       return !r.fork&&!r.archived&&EXCLUDE.indexOf(r.name.toLowerCase())<0&&(!ONLY_TOPIC||(r.topics||[]).indexOf(ONLY_TOPIC)>-1);
-    }).sort(function(a,b){return new Date(b.pushed_at)-new Date(a.pushed_at)}).slice(0,MAX);
-    if(!list.length)return;   // nothing tagged yet: keep the built-in card
-    box.textContent='';
-    list.forEach(function(r){
-      var c=el('div','box pc'),tags=el('div','tags'),m=el('div','meta');
-      c.appendChild(el('h3',null,pretty(r.name)));
-      c.appendChild(el('p',null,r.description||'No description yet.'));
-      if(r.language)tags.appendChild(el('span','tag',r.language));
-      (r.topics||[]).slice(0,3).forEach(function(t){tags.appendChild(el('span','tag',t))});
-      c.appendChild(tags);
-      m.appendChild(el('span',null,'\u2605 '+r.stargazers_count));
-      m.appendChild(el('span',null,'Updated '+ago(r.pushed_at)));
-      c.appendChild(m);
-      c.appendChild(link('View on GitHub \u2192',r.html_url));
-      if(r.homepage&&/^https?:\/\//.test(r.homepage))c.appendChild(link('Live demo \u2192',r.homepage));
-      box.appendChild(c);
+    }).sort(function(a,b){return new Date(b.pushed_at)-new Date(a.pushed_at)});
+    var used={},out=[];
+    PINNED.forEach(function(p){
+      var r=repos.filter(function(x){return x.name.toLowerCase()===p.name})[0];
+      if(r){used[r.id]=1;out.push(fromRepo(r,p))}else out.push(p);
     });
+    repos.forEach(function(r){if(!used[r.id])out.push(fromRepo(r,null))});
+    box.textContent='';
+    out.slice(0,MAX).forEach(function(o){box.appendChild(build(o))});
   }
   var cached=null;
   try{cached=JSON.parse(localStorage.getItem(KEY))}catch(e){}
-  if(cached&&Date.now()-cached.t<36e5){render(cached.d);return}
+  if(cached&&Date.now()-cached.t<36e5){show(cached.d);return}
+  show(cached?cached.d:[]);
   fetch('https://api.github.com/users/'+USER+'/repos?per_page=100&sort=pushed',{headers:{Accept:'application/vnd.github+json'}})
     .then(function(r){if(!r.ok)throw new Error(r.status);return r.json()})
-    .then(function(d){try{localStorage.setItem(KEY,JSON.stringify({t:Date.now(),d:d}))}catch(e){}render(d)})
-    .catch(function(){
-      if(cached){render(cached.d);return}
-      /* keep the static project card already in the page */
-    });
+    .then(function(d){try{localStorage.setItem(KEY,JSON.stringify({t:Date.now(),d:d}))}catch(e){}show(d)})
+    .catch(function(){});
 })();
 </script>
 <script>
